@@ -20,21 +20,10 @@
                     {% for subject in subjects %}
                         <tr>
                             <td>{{ subject.name }}</td>
-                            <td>{{ subject.description|truncate(40) }}</td>
                             <td>{{ subject.category }}</td>
-                            <td class="text-end">
-                                <div class="d-flex gap-2 justify-content-end">
-                                    <a href="{{ url_for('admin.edit_subject', subject_id=subject.id) }}"
-                                       class="btn btn-sm btn-outline-primary"
-                                       title="Edit subject">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <a href="{{ url_for('admin.add_resource', subject_id=subject.id) }}"
-                                       class="btn btn-sm btn-outline-primary"
-                                       title="Add resource">
-                                        <i class="bi bi-plus-circle"></i>
-                                    </a>
-                                </div>
+                            <td>
+                                <a href="{{ url_for('admin.list_resources_for_subject', subject_id=subject.id) }}" class="btn btn-info">View Resources</a>
+                                <!-- Other action buttons (edit, delete, etc.) -->
                             </td>
                         </tr>
                     {% endfor %}
