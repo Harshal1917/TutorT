@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to TutorT{% endblock %}
+
+{% block content %}
+<div class="px-4 py-5 my-5 text-center hero-section"> <!-- Added hero-section class -->
+    <img class="d-block mx-auto mb-4 logo-main" src="{{ url_for('static', filename='images/logo_placeholder.png') }}" alt="TutorT Logo" width="128"> <!-- Assuming logo.png is your main logo and applying logo-main class, adjusted width -->
+    <h1 class="display-5 fw-bold">Welcome to TutorT!</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Your one-stop intelligent platform for learning diverse subjects, offering personalized learning paths, AI-driven assistance, and curated resources.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('admin.list_subjects') }}" class="btn btn-primary btn-lg px-4 gap-3">Browse Subjects</a>
+                <a href="{{ url_for('main.logout') }}" class="btn btn-outline-secondary btn-lg px-4">Logout</a> <!-- Consider if btn-secondary is more appropriate -->
+            {% else %}
+                <a href="{{ url_for('main.login') }}" class="btn btn-primary btn-lg px-4 gap-3">Login</a>
+                <a href="{{ url_for('main.register') }}" class="btn btn-secondary btn-lg px-4">Sign Up</a> <!-- Changed to btn-secondary for variety, uses new style -->
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- You can add more sections here, like featured subjects or latest news -->
+<!-- Example: -->
+<!--
+<div class="row mt-5">
+    <div class="col-md-4">
+        <h2>Feature 1</h2>
+        <p>Description of feature 1.</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Feature 2</h2>
+        <p>Description of feature 2.</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Feature 3</h2>
+        <p>Description of feature 3.</p>
+    </div>
+</div>
+-->
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "admin/admin_base.html" %}
+
+{% block admin_content %}
+    <h2>{{ title }}</h2>
+    <a href="{{ url_for('admin.add_resource', subject_id=subject.id) }}" class="btn btn-primary mb-3">Add New Resource to {{ subject.name }}</a>
+    
+    {% if resources %}
+        <ul class="list-group">
+            {% for resource in resources %}
+                <li class="list-group-item">
+                    <h5>{{ resource.title }} ({{ resource.resource_type }})</h5>
+                    {% if resource.content %}
+                        <p>{{ resource.content }}</p>
+                    {% endif %}
+                    {% if resource.url %}
+                        <p><a href="{{ resource.url }}" target="_blank">{{ resource.url }}</a></p>
+                    {% endif %}
+                    <small class="text-muted">Added on: {{ resource.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
+                    {# Add edit/delete buttons here later if needed #}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No resources found for this subject yet.</p>
+    {% endif %}
+    
+    <div class="mt-3">
+        <a href="{{ url_for('admin.list_subjects') }}" class="btn btn-secondary">Back to Subjects List</a>
+    </div>
+{% endblock %}

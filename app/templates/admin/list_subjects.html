@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}  <!-- Changed from app_content to content -->
+    <div class="container mt-4">
+        <h1 class="mb-4 text-center">{{ title }}</h1>
+        <div class="text-right mb-3">
+            <a href="{{ url_for('admin.add_subject') }}" class="btn btn-primary">Add New Subject</a>
+        </div>
+        {% if subjects %}
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for subject in subjects %}
+                        <tr>
+                            <td>{{ subject.name }}</td>
+                            <td>{{ subject.description|truncate(40) }}</td>
+                            <td>{{ subject.category }}</td>
+                            <td class="text-end">
+                                <div class="d-flex gap-2 justify-content-end">
+                                    <a href="{{ url_for('admin.edit_subject', subject_id=subject.id) }}"
+                                       class="btn btn-sm btn-outline-primary"
+                                       title="Edit subject">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a href="{{ url_for('admin.add_resource', subject_id=subject.id) }}"
+                                       class="btn btn-sm btn-outline-primary"
+                                       title="Add resource">
+                                        <i class="bi bi-plus-circle"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="alert alert-info">No subjects found...</div>
+        {% endif %}
+    </div>
+{% endblock %}

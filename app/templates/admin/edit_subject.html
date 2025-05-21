@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Edit {{ subject.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Edit {{ subject.name }}</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        
+        <div class="mb-3">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control", value=subject.name) }}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.description.label(class="form-label") }}
+            {{ form.description(class="form-control", rows=4) }}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.category.label(class="form-label") }}
+            {{ form.category(class="form-select") }}
+        </div>
+        
+        <div class="d-grid gap-2 d-md-flex">
+            <button type="submit" class="btn btn-primary px-4">
+                <i class="bi bi-save me-2"></i>Save Changes
+            </button>
+            <a href="{{ url_for('admin.list_subjects') }}" class="btn btn-outline-secondary">
+                <i class="bi bi-x-circle me-2"></i>Cancel
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

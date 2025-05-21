@@ -1,0 +1,135 @@
+/* Define a color palette based on the logo */
+:root {
+    --primary-color: #2c3e50; /* Dark Blue/Charcoal */
+    --secondary-color: #f1c40f; /* Gold/Yellow */
+    --accent-color: #ecf0f1;   /* Light Gray/Off-White */
+    --text-dark: #343a40;
+    --text-light: #f8f9fa;
+    --body-bg: #ffffff; /* Or var(--accent-color) for a slightly off-white background */
+}
+
+body {
+    font-family: sans-serif;
+    background-color: var(--body-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+    padding-top: 70px; /* Adjust if your navbar height changes */
+}
+
+/* Navbar adjustments - if you want to change it from Bootstrap's default bg-dark */
+/* You might need to override Bootstrap styles or create a custom class */
+.navbar-custom {
+    background-color: var(--accent-color) !important; /* Changed to light gray */
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: var(--primary-color); /* Changed to dark text for light background */
+}
+
+.navbar-custom .nav-link.active, /* Style for the active link */
+.navbar-custom .nav-link:hover {
+    color: var(--secondary-color); /* Gold/Yellow for hover/active */
+}
+
+.navbar-brand img {
+    max-height: 80px; /* Adjust to match or be slightly larger than base.html height */
+    margin-right: 0px; /* Add some space between logo and next item if any */
+}
+
+/* Button styling example */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+.btn-primary:hover {
+    background-color: darken(var(--primary-color), 10%); /* Darken primary on hover */
+    border-color: darken(var(--primary-color), 10%);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--text-dark); /* Text on yellow button might need to be dark */
+}
+
+.btn-secondary:hover {
+    background-color: darken(var(--secondary-color), 10%);
+    border-color: darken(var(--secondary-color), 10%);
+}
+
+/* Card styling to match the theme */
+.card {
+    border: 1px solid var(--accent-color);
+    margin-top: 20px;
+}
+
+.card-header {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Footer styling */
+footer {
+    background-color: var(--accent-color);
+    color: var(--text-dark);
+    padding: 20px 0;
+    margin-top: 40px;
+    border-top: 3px solid var(--secondary-color); /* Accent border with secondary color */
+}
+
+/* Link styling */
+a {
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+/* Flash messages styling (can be more specific if needed) */
+.alert-success {
+    background-color: #d4edda; /* Keep Bootstrap's default or customize */
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+/* Hero section on index.html */
+.hero-section {
+    background-color: var(--accent-color); /* Light background for the hero */
+    padding: 4rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: .3rem;
+    text-align: center;
+}
+
+.hero-section h1 {
+    color: var(--primary-color);
+}
+
+.hero-section .lead {
+    color: var(--text-dark);
+}
+
+.hero-section img.logo-main {
+    max-width: 150px; /* Adjust as needed */
+    margin-bottom: 1rem;
+}

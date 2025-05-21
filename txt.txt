@@ -1,0 +1,18 @@
+tutorT/
+├── app/                  # Our main application package
+│   ├── __init__.py       # Application factory, initializes extensions
+│   ├── models.py         # Database models
+│   ├── routes.py         # Basic routes for now (will be split into blueprints later)
+│   ├── static/           # For CSS, JavaScript, images
+│   │   └── css/
+│   │       └── style.css
+│   └── templates/        # HTML templates
+│       ├── base.html     # Base template for others to extend
+│       └── index.html    # Home page template
+├── migrations/           # For database migration scripts (Flask-Migrate will create this)
+├── venv/                 # Virtual environment (already created)
+├── .env                  # For environment variables (SECRET_KEY, DATABASE_URL)
+├── .flaskenv             # For Flask CLI environment variables
+├── config.py             # Configuration settings
+├── requirements.txt      # To list dependencies
+└── run.py                # Script to run the development server

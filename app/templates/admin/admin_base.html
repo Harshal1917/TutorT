@@ -1,0 +1,74 @@
+{% extends "base.html" %} {# This assumes your main site base is base.html #}
+
+{% block title %}{% block admin_title %}{% endblock %} - Admin - TutorT{% endblock %}
+
+{# Override or add to the navbar from base.html if needed #}
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('admin.dashboard') }}">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="TutorT Admin Logo" height="40" class="d-inline-block align-top">
+                TutorT Admin
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbarSupportedContent" aria-controls="adminNavbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="adminNavbarSupportedContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'admin.dashboard' %}active{% endif %}" href="{{ url_for('admin.dashboard') }}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'admin.list_subjects' or request.endpoint == 'admin.add_subject' or request.endpoint == 'admin.edit_subject' %}active{% endif %}" href="{{ url_for('admin.list_subjects') }}">Subjects</a>
+                    </li>
+                    <!-- Add other admin navigation links here -->
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <span class="navbar-text me-2">Hi, {{ current_user.username }}</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.logout') }}">Logout</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.index') }}" target="_blank">View Site</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {# Call super() if you want to include the flashed messages from the parent base.html #}
+    {{ super() }}
+{% endblock %}
+
+{# This block will replace the main content block from base.html #}
+{% block content %}
+    <div class="container mt-4">
+        {% block admin_page_title %}
+            <h1 class="mb-4">{% block admin_content_title %}{% endblock %}</h1>
+        {% endblock %}
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category if category != 'message' else 'info' }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block admin_content %}
+            <!-- Admin specific page content will go here -->
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{# You can override other blocks from base.html if needed, like scripts #}
+{% block scripts %}
+    {{ super() }} {# Includes scripts from base.html #}
+    <!-- Add admin specific JS here if needed -->
+{% endblock %}

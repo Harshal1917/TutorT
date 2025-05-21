@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            {# Placeholder for profile picture #}
+            <img src="{{ url_for('static', filename='images/default_profile.png') }}" alt="Profile Picture" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+            <h3>{{ user.username }}</h3>
+            <p class="text-muted">{{ user.email }}</p>
+            {# Add more user details here if available, e.g., bio, join date #}
+        </div>
+        <div class="col-md-8">
+            <h4>About {{ user.username }}</h4>
+            <p>
+                This is the profile page for {{ user.username }}. More details and user-specific content can be added here later.
+                For example, you could list subjects they are interested in, resources they've created, or their activity.
+            </p>
+            {# Add other sections like user's activity, created resources, etc. #}
+        </div>
+    </div>
+</div>
+{% endblock %}
