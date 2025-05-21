@@ -13,4 +13,7 @@ def make_shell_context():
     return {'db': db, 'User': User}
 
 if __name__ == '__main__':
-    app.run() # No need for debug=True here, FLASK_DEBUG in .flaskenv handles it
+    # app.run()
+    import os
+    port = int(os.environ.get('PORT', 10000))
+    app.run(host='0.0.0.0', port=port) # No need for debug=True here, FLASK_DEBUG in .flaskenv handles it
