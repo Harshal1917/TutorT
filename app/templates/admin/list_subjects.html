@@ -23,7 +23,8 @@
                             <td>{{ subject.category }}</td>
                             <td>
                                 <a href="{{ url_for('admin.list_resources_for_subject', subject_id=subject.id) }}" class="btn btn-info">View Resources</a>
-                                <!-- Other action buttons (edit, delete, etc.) -->
+                                <a href="{{ url_for('admin.edit_subject', subject_id=subject.id) }}" class="btn btn-warning">Edit Subject</a>
+                                <a href="{{ url_for('admin.add_resource', subject_id=subject.id) }}" class="btn btn-success">Add Resource</a>
                             </td>
                         </tr>
                     {% endfor %}
